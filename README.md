@@ -37,8 +37,7 @@ export PATH=$PATH:${HOME}/Downloads/ispc-v1.18.0-linux/bin
 ## Sherlock file system
 When you log onto Sherlock, you are automatically put into your home directory ```/home/users/[your_sunit]``` with a login node. (meaning that it is not meant for computation!). Home directory's storage is very low (15 GB), you may want to go to other directories for compuation. A summary of different directories is shown below.
 
-<img src="https://github.com/EmmaLammE/Sherlock_examples/readme_imag/sher_dir_summ.png" width="48">
-![](readme_imag/sher_dir_summ.png | width=300)
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9e2582c7fcc89b4f160dd768ab2e6974603396bb/readme_imag/sher_dir_summ.png" width="500">
 
 **Sherlock is for computation, not storage!**
 
