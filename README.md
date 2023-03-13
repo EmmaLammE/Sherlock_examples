@@ -42,12 +42,18 @@ When you log onto Sherlock, you are automatically put into your home directory `
 
 **Sherlock is for computation, not storage!**
 
-More info of file system can be found here: [https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose](https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose)
-
 ### User limits
 A summary of user limits is shown below.
 
-<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9e2582c7fcc89b4f160dd768ab2e6974603396bb/readme_imag/sher_dir_summ.png" width="500">
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/7f3f2ba5875ee30db4d72ad38e56a5f79086693c/readme_imag/sher_user_limits.png" width="600">
+
+* MaxTRESPU: max number of CPUs/GPUs one user can use
+* MaxTRESPA: max number of CPUs/GPUs one group can use
+* MaxSubmitPU: max number of jobs one user can submit
+* MaxSubmitPA: max number of jobs one group can submit
+* MaxWall: max time one job can run
+
+More info of file system and user limits can be found here: [https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose](https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose)
 
 
 ## Clone your repo
