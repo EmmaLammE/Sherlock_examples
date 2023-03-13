@@ -7,7 +7,7 @@ For Mac users, open up terminal, and login using the following command. Your sun
 ```
 ssh [your_sunit]@sherlock.stanford.edu
 ```
-For Windows user, sorry. Usually you can use Cygwin or WSL.
+For Windows users, sorry. Usually you can use Cygwin or WSL.
 
 ### Web browser
 
@@ -56,11 +56,27 @@ A summary of user limits is shown below.
 More info of file system and user limits can be found here: [https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose](https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose)
 
 
-## Clone your repo
-
-In this tutorial, we are using the Sherlock_example repo. Copy paste the following command into your bash
+## Example to modify and submit a job on Sherlock
+### Clone the repo onto Sherlock
+In your own research, you want to clone your program onto Sherlock. In this tutorial, we are using the Sherlock_example repo. Copy paste the following command into your bash
 ```
 git clone https://github.com/EmmaLammE/Sherlock_examples.git
 ```
+### Choose a code editor
+After you have the codes ready on Sherlock, you want to read the codes comfortably and modify them efficiently, especially when you need to debug a bit on Sherlock. Image this work flow: 
+
+Have the codes ready on Sherlock -> Run the codes -> You find a bug or need to change a parameter -> Modify your codes -> Run it again. 
+
+Here at step 4, there are 3 routes to go: 
+
+**a.** you can change your codes directly on Sherlock; **b.** you change your codes locally on your personal computer, then git push to remote, then git pull on Sherlock; **c.** you can mount the Sherlock folder onto your personal computer. 
+
+Depending on what route you choose, here are various way to choose codes editor. Here, I will only briefly summarize the ones that I used before.
+
+* vim: good for remote editting. Fast, efficient text editing. Need to memorize some commands;
+* VSCode: beginner friendly. It can connect to remote server directly. (But recently cannot connect to Sherlock for unknow reasons);
+* Sublime text: just a text editor, similar to VSCode, but with less build in packages. But it cannot connect to remote server;
+* sshfs + codes editor (Mac only): easy to use once setup. No need to clone any codes on personal computer. No need to worry about version control. But it requires changing system security settings to enable system extensions.
+
 
 
