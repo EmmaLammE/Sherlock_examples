@@ -17,7 +17,7 @@ The Sherlock OnDemand interface allows you to conduct your research on Sherlock 
 
 This allows you to further access, modify and run jobs on Sherlock. For example, you can check the status of your submitted jobs (explained below) by clicking ```jobs -> active jobs```, and you will see something like this
 
-<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9de664de54b78ea9bf046dd271d6c2e9b40abf32/readme_imag/ondemand_joblist.png" width="800">
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9996ae793113912b9f0ab0b37bda3a6b8ff7691b/readme_imag/ondemand_login.png" width="800">
 
 More info can be found here: [https://www.sherlock.stanford.edu/docs/user-guide/ondemand/](https://www.sherlock.stanford.edu/docs/user-guide/ondemand/)
 
@@ -34,14 +34,20 @@ ml python
 export PATH=$PATH:${HOME}/Downloads/ispc-v1.18.0-linux/bin
 ```
 
-## Sherlock file system
+## Sherlock system
+### File system
 When you log onto Sherlock, you are automatically put into your home directory ```/home/users/[your_sunit]``` with a login node. (meaning that it is not meant for computation!). Home directory's storage is very low (15 GB), you may want to go to other directories for compuation. A summary of different directories is shown below.
 
 <img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9e2582c7fcc89b4f160dd768ab2e6974603396bb/readme_imag/sher_dir_summ.png" width="500">
 
 **Sherlock is for computation, not storage!**
 
+More info of file system can be found here: [https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose](https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose)
 
+### User limits
+A summary of user limits is shown below.
+
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9e2582c7fcc89b4f160dd768ab2e6974603396bb/readme_imag/sher_dir_summ.png" width="500">
 
 
 ## Clone your repo
