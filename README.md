@@ -13,11 +13,11 @@ For Windows users, sorry. Usually you can use Cygwin or WSL.
 
 The Sherlock OnDemand interface allows you to conduct your research on Sherlock through a web browser. Once you login, you will see something like this
 
-<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9de664de54b78ea9bf046dd271d6c2e9b40abf32/readme_imag/ondemand_joblist.png" width="800">
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9996ae793113912b9f0ab0b37bda3a6b8ff7691b/readme_imag/ondemand_login.png" width="800">
 
 This allows you to further access, modify and run jobs on Sherlock. For example, you can check the status of your submitted jobs (explained below) by clicking ```jobs -> active jobs```, and you will see something like this
 
-<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9996ae793113912b9f0ab0b37bda3a6b8ff7691b/readme_imag/ondemand_login.png" width="800">
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9de664de54b78ea9bf046dd271d6c2e9b40abf32/readme_imag/ondemand_joblist.png" width="800">
 
 More info can be found here: [https://www.sherlock.stanford.edu/docs/user-guide/ondemand/](https://www.sherlock.stanford.edu/docs/user-guide/ondemand/)
 
@@ -55,8 +55,17 @@ A summary of user limits is shown below.
 
 More info of file system and user limits can be found here: [https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose](https://www.sherlock.stanford.edu/docs/storage/#features-and-purpose)
 
+### Partitions
+Partition is set of compute nodes on Sherlock will you run on. A summary of partitions is shown below.
+
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/7f3f2ba5875ee30db4d72ad38e56a5f79086693c/readme_imag/sher_user_limits.png" width="600">
 
 ## Example to modify and submit a job on Sherlock
+### Login to Sherlock
+```
+ssh [your_sunit_id]@sherlock.stanford.edu
+```
+
 ### Clone the repo onto Sherlock
 In your own research, you want to clone your program onto Sherlock. In this tutorial, we are using the Sherlock_example repo. Copy paste the following command into your bash
 ```
@@ -75,8 +84,16 @@ Depending on what route you choose, here are various way to choose codes editor.
 
 * vim: good for remote editting. Fast, efficient text editing. Need to memorize some commands;
 * VSCode: beginner friendly. It can connect to remote server directly. (But recently cannot connect to Sherlock for unknow reasons);
-* Sublime text: just a text editor, similar to VSCode, but with less build in packages. But it cannot connect to remote server;
-* sshfs + codes editor (Mac only): easy to use once setup. No need to clone any codes on personal computer. No need to worry about version control. But it requires changing system security settings to enable system extensions.
+* Sublime text: just a text editor, similar to VSCode, but with less build in extensions. Also it cannot connect to remote server;
+* sshfs + codes editor: easy to use once setup. No need to clone any codes on personal computer. No need to worry about version control. But it requires changing system security settings to enable system extensions.
+
+### Run on a computation node
+If you want to run something directly in the console, first you need to request a computational node by running the following command. (Remember that if you just do ssh [your_sunit_id]@sherlock.stanford.edu, it only takes you to a login node). This will lead you to an interactive session and resources, which is useful for debugging.
+```
+srun --pty --partition=serc --cpus=2 --mem=32GB --time=01:00:00 bash
+```
+
+The above command requires a 1 hour interative session with 2 CPUs, 32 GB memories on serc partition. 
 
 
 
