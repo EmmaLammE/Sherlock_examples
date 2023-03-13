@@ -9,6 +9,12 @@ ssh [your_sunit]@sherlock.stanford.edu
 ```
 For Windows user, sorry. Usually you can use Cygwin or WSL.
 
+### Web browwer
+
+The Sherlock OnDemand interface allows you to conduct your research on Sherlock through a web browser. Once you login, you will see something like this
+
+
+You can login through this link: [https://www.sherlock.stanford.edu/docs/user-guide/ondemand/](https://www.sherlock.stanford.edu/docs/user-guide/ondemand/)
 
 ## .bashrc file
 
