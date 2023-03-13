@@ -13,11 +13,11 @@ For Windows user, sorry. Usually you can use Cygwin or WSL.
 
 The Sherlock OnDemand interface allows you to conduct your research on Sherlock through a web browser. Once you login, you will see something like this
 
-![](readme_imag/ondemand_login.png)
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9de664de54b78ea9bf046dd271d6c2e9b40abf32/readme_imag/ondemand_joblist.png" width="800">
 
 This allows you to further access, modify and run jobs on Sherlock. For example, you can check the status of your submitted jobs (explained below) by clicking ```jobs -> active jobs```, and you will see something like this
 
-![](readme_imag/ondemand_joblist.png)
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/9de664de54b78ea9bf046dd271d6c2e9b40abf32/readme_imag/ondemand_joblist.png" width="800">
 
 More info can be found here: [https://www.sherlock.stanford.edu/docs/user-guide/ondemand/](https://www.sherlock.stanford.edu/docs/user-guide/ondemand/)
 
