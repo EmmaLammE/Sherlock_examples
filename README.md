@@ -90,7 +90,7 @@ Depending on what route you choose, here are various way to choose codes editor.
 ### Run on a computation node
 If you want to run something directly in the console, first you need to request a computational node by running the following command. (Remember that if you just do ssh [your_sunit_id]@sherlock.stanford.edu, it only takes you to a login node). This will lead you to an interactive session and resources, which is useful for debugging.
 ```
-srun --pty --partition=serc --cpus=2 --mem=32GB --time=01:00:00 bash
+srun -c 2 --mem=32GB --pty --partition=serc --time=01:00:00 bash
 ```
 
 The above command requires a 1 hour interative session with 2 CPUs, 32 GB memories on serc partition. 
