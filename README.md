@@ -58,7 +58,7 @@ More info of file system and user limits can be found here: [https://www.sherloc
 ### Partitions
 Partition is set of compute nodes on Sherlock will you run on. A summary of partitions is shown below.
 
-<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/7f3f2ba5875ee30db4d72ad38e56a5f79086693c/readme_imag/sher_user_limits.png" width="600">
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0f4ae4ff7699e6d1175dd8c25b6d79ccea548350/readme_imag/sher_partition.png" width="1200">
 
 ## Example to modify and submit a job on Sherlock
 ### Login to Sherlock
@@ -95,5 +95,8 @@ srun --pty --partition=serc --cpus=2 --mem=32GB --time=01:00:00 bash
 
 The above command requires a 1 hour interative session with 2 CPUs, 32 GB memories on serc partition. 
 
-
+The you can run the codes directly in the console. For example, 
+```
+python large_add.py
+```
 
