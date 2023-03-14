@@ -120,7 +120,18 @@ python large_add.py
 
 In the sbatch file, you tell the scheduler what resources your job needs and how long it should run. It should be a close estimate. For example, in the above, we estimate our program is going to need 10 GB memory and it takes about 10 minutes to complete. We further place it on serc partition and request 2 CPUs to run the program. In addition, we save the err and output as separate files using the ```-o``` and ```-e```.
 
-After you submit, you can check the status of your job by the following command
+After you submit, you can check the status of your job by the following command.
 ```
 squeue -u [your_sunit_id]
 ```
+
+Your current jobs and their status will show as follows.
+
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/e2dfc04f0961b5a65d0e02a8c8ec1d6aff1ac4ea/readme_imag/sher_squeue.png" width="600">
+
+The status R means run, PD means pending.
+
+
+## A small parallel program
+
+
