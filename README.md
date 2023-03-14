@@ -80,7 +80,7 @@ Here at step 4, there are 3 routes to go:
 
 **a.** you can change your codes directly on Sherlock; **b.** you change your codes locally on your personal computer, then git push to remote, then git pull on Sherlock; **c.** you can mount the Sherlock folder onto your personal computer. 
 
-Depending on what route you choose, here are various way to choose codes editor. Here, I will only briefly summarize the ones that I used before.
+Depending on what route you choose, there are various way to choose codes editor. Here, I only briefly summarize the ones that I used before.
 
 * vim: good for remote editting. Fast, efficient text editing. Need to memorize some commands;
 * VSCode: beginner friendly. It can connect to remote server directly. (But recently cannot connect to Sherlock for unknow reasons);
@@ -100,3 +100,27 @@ The you can run the codes directly in the console. For example,
 python large_add.py
 ```
 
+### Run by sbatch
+Another way to run a program is to schedule batch jobs. Then script is submitted to and executed by the scheduler (Slurm). Remember to carefully request the computing power. If you request more computing powers than you need , e.g. request 100 CPUs when you actually only need 10, the waiting time is long. For example, for the same addition program in python, you may have a sbatch file looking something like this.
+```
+#!/bin/bash
+#SBATCH --job-name=test
+#SBATCH --time=00:10:00
+#SBATCH --mem=10GB
+#SBATCH -p serc
+#SBATCH -c 2
+#SBATCH -o out_%j.out
+#SBATCH -e err_%j.err
+
+# below you run/call your code, load modules, python, Matlab, R, etc.
+# and do any other scripting you want
+# lines that begin with #SBATCH are directives (requests) to the scheduler-SLURM module load python/3.6.1
+python large_add.py
+```
+
+In the sbatch file, you tell the scheduler what resources your job needs and how long it should run. It should be a close estimate. For example, in the above, we estimate our program is going to need 10 GB memory and it takes about 10 minutes to complete. We further place it on serc partition and request 2 CPUs to run the program. In addition, we save the err and output as separate files using the ```-o``` and ```-e```.
+
+After you submit, you can check the status of your job by the following command
+```
+squeue -u [your_sunit_id]
+```
