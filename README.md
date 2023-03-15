@@ -174,7 +174,7 @@ python3 par_for_loop.py
 <!-- **Note:** The package concurrent requires python 3.8 or above. Be sure to check your python version if concurrent is reported not found. -->
 The outputs with the size of the vector to be 1e7 is shown below.
 
-<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/e2dfc04f0961b5a65d0e02a8c8ec1d6aff1ac4ea/readme_imag/sher_squeue.png" width="600">
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/par_py_axpb.png" width="300">
 
 As we can see, creating more threads does not increase the speed of computation. Is this because some codes we wrote were wrong? Let's try using the same parallel algorithm, but instead of computing ```y=ax+b```, we open a series of website given a set of urls. Try run 
 ```
@@ -182,9 +182,25 @@ python3 par_open_urls.py
 ```
 An example output is 
 
-<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/e2dfc04f0961b5a65d0e02a8c8ec1d6aff1ac4ea/readme_imag/sher_squeue.png" width="600">
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/par_py_urls.png" width="400">
 
 In case, we do see a speed up with the increasing the number of threads used. Let's find out why this is the case.
 
 In the ```y[i]=a*x[i]+b``` example, for computation of each element in the vector, we have the following executions to do: 1 load, 1 multiplication, 1 addition, and 1 store. The computation time needed for each of the execution is different. Depending on the system you run the program on, the exact time to operate instructions will be different. But as you can imagine, 1 load usually takes a lot longer than 1 addition. For example, if 1 load takes 2 clocks, 1 store takes 2 clocks, and 1 floating point operation takes 1 clock. The arithematic intensity of ```y[i]=a*x[i]+b``` is 2/(2+4) = 1/3. This means that only 33% of the time the codes are doing useful work instead of just waiting to read/write values from memory/cache. Thus, this program is more bandwidth limited, instead of computation limited.
 
+### Parallelize matrix multiplication
+In this example, we calculate a matrix-matrix multiplication ```AB=X```. We use this to illustrate another important part in parallelizing a program - indexing. We all know that matrix multiplication requires accessing each row of A and each column of B, as shown below.
+
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/gemm_sketch.png" width="400">
+
+One part that always get overlooked is how we access each element in A and B. For example, in C++ the index of a matrix is oriented horizontally, as shown below on the left. For row accessing, this is fast, because we are requiring a continuous indices. But for column access, this requires a jump access with a step size of N. The jump access is slow as in the elements are stored in memory continuously. Therefore, apart from regular parallelizing schemes, we can also change the index of the second matrix B, such that the loading process is more efficient, as shown below on the right.
+
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/par_mat_mult_sketch_B_rearrange.png" width="600">
+
+A comparison of the performance for continuous access is shown below and jump access. The time used for non-rearranged matrix B
+
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/gemm_B.png" width="500">
+
+and the time used for rearranged matrix B
+
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/gemm_B_rearrange.png" width="500">
