@@ -85,7 +85,7 @@ Depending on what route you choose, there are various way to choose codes editor
 * vim: good for remote editting. Fast, efficient text editing. Need to memorize some commands;
 * VSCode: beginner friendly. It can connect to remote server directly. (But recently cannot connect to Sherlock for unknow reasons);
 * Sublime text: just a text editor, similar to VSCode, but with less build in extensions. Also it cannot connect to remote server;
-* sshfs + codes editor: easy to use once setup. No need to clone any codes on personal computer. No need to worry about version control. But it requires changing system security settings to enable system extensions.
+* sshfs + codes editor: easy to use once setup. No need to clone any codes on personal computer. But it requires changing system security settings to enable system extensions.
 
 ### Run on a computation node
 If you want to run something directly in the console, first you need to request a computational node by running the following command. (Remember that if you just do ssh [your_sunit_id]@sherlock.stanford.edu, it only takes you to a login node). This will lead you to an interactive session and resources, which is useful for debugging.
@@ -101,7 +101,7 @@ python large_add.py
 ```
 
 ### Run by sbatch
-Another way to run a program is to schedule batch jobs. Then script is submitted to and executed by the scheduler (Slurm). Remember to carefully request the computing power. If you request more computing powers than you need , e.g. request 100 CPUs when you actually only need 10, the waiting time is long. For example, for the same addition program in python, you may have a sbatch file looking something like this.
+Another way to run a program is to schedule batch jobs. Then script is submitted to and executed by the scheduler (Slurm). For example, for the same addition program in python, you may have a sbatch file looking something like this.
 ```
 #!/bin/bash
 #SBATCH --job-name=test
@@ -131,7 +131,35 @@ Your current jobs and their status will show as follows.
 
 The status R means run, PD means pending.
 
+Remember to carefully request the computing power. If you request more computing powers than you need, e.g. request 100 CPUs when you actually only need 10, not only the waiting time is long you also takes up resources that other people could utilize.
 
-## A small parallel program
+## Small example parallel programs
+We demonstrate 2 simple cases that we can utilize the parallel computing on Sherlock. First case is parallelizing a for loop, second case is to parallelizing a matrix-vector multiplication.
+
+### Understanding dependencies
+The very first thing to parallelize an existing program is to identify the inherent dependencies in your program. For example, imagine you have a sudo codes looks like the one below
+```
+a = 3
+b = 4
+c = a + b
+d = 2*a + b
+```
+Line 3 and line 4 are independent of each other, thus these two lines can be computed simutaneuously, i.e. parallelizable. However, if the sudo codes looks like this
+```
+a = 3
+b = 4
+c = a + b
+d = 2*c + b
+```
+Line 4 now depends on the results of line 3, thus cannot be executed until line 3 is finshed, i.e. this program is not parallelizable.
+
+### Parallelize a for loop
+For loops are probably the most common structures in all application fields regardless of the choice of languages. It is beneficial if some parts of the for loops can be parallelized. Imagine we have an addition for loop that simply adds one vector a to another vector b, and store the results in a new vector c.
+```
+for i = 1:N
+    c[i] = a[i] + b[i]
+```
+Since addint up each element is completely independent of another, we can divided the for loop into several parts, and assign each part to a processor to do the computation. An example of is shown below.
 
 
+**Note:** The package concurrent requires python 3.8 or above. Be sure to check your python version if concurrent is reported not found.
