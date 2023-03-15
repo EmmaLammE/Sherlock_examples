@@ -115,7 +115,7 @@ Another way to run a program is to schedule batch jobs. Then script is submitted
 # below you run/call your code, load modules, python, Matlab, R, etc.
 # and do any other scripting you want
 # lines that begin with #SBATCH are directives (requests) to the scheduler-SLURM module load python/3.6.1
-python large_add.py
+python some_program.py
 ```
 
 In the sbatch file, you tell the scheduler what resources your job needs and how long it should run. It should be a close estimate. For example, in the above, we estimate our program is going to need 10 GB memory and it takes about 10 minutes to complete. We further place it on serc partition and request 2 CPUs to run the program. In addition, we save the err and output as separate files using the ```-o``` and ```-e```.
@@ -154,12 +154,33 @@ d = 2*c + b
 Line 4 now depends on the results of line 3, thus cannot be executed until line 3 is finshed, i.e. this program is not parallelizable.
 
 ### Parallelize a for loop
-For loops are probably the most common structures in all application fields regardless of the choice of languages. It is beneficial if some parts of the for loops can be parallelized. Imagine we have an addition for loop that simply adds one vector a to another vector b, and store the results in a new vector c.
+For loops are probably the most common structures in all application fields regardless of the choice of languages. It is beneficial if some parts of the for loops can be parallelized. In this example, we are parallelizing the computation ```y = a*x + b```, where ```x, y``` are vectors and ```a, b``` are given constants. In most program languages, you will write something like
 ```
 for i = 1:N
-    c[i] = a[i] + b[i]
+    y[i] = a*x[i] + b
 ```
-Since addint up each element is completely independent of another, we can divided the for loop into several parts, and assign each part to a processor to do the computation. An example of is shown below.
+Since computation of each element is completely independent of another, we can divided the for loop into several parts, and assign each part to a processor to do the computation. An example of is shown below.
+```
+pool = ThreadPool(2)
+func = partial(some_function_call, a, b)
+y = pool.map(func, x)
+pool.close()
+pool.join()
+```
+Here, we set the pool size to 2, meaning that we have 2 threads of execution. Then each worker thread gets tasks synchronously, meaning that the caller will block until the issued task or tasks have been completed. The thread pool provides a parallel version of the built-in map() function for issuing tasks. After all the threads finish their jobs, we close the pool and join all threads together. Use the following command to run the code
+```
+python3 par_for_loop.py
+```
+<!-- **Note:** The package concurrent requires python 3.8 or above. Be sure to check your python version if concurrent is reported not found. -->
+Here is an example output with the size of the vector to be 1e7.
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/e2dfc04f0961b5a65d0e02a8c8ec1d6aff1ac4ea/readme_imag/sher_squeue.png" width="600">
 
+As we can see, creating more threads does not increase the speed of computation. Is this because some codes we wrote were wrong? Let's try using the same parallel algorithm, but instead of computing ```y=ax+b```, we open a series of website given a set of urls. Try run 
+```
+python3 par_open_urls.py
+```
+An example output is 
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/e2dfc04f0961b5a65d0e02a8c8ec1d6aff1ac4ea/readme_imag/sher_squeue.png" width="600">
 
-**Note:** The package concurrent requires python 3.8 or above. Be sure to check your python version if concurrent is reported not found.
+Here is an example output with the size of the vector to be 1e7.
+
