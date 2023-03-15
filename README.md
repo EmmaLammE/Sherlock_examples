@@ -93,7 +93,7 @@ If you want to run something directly in the console, first you need to request 
 srun -c 2 --mem=32GB --pty --partition=serc --time=01:00:00 bash
 ```
 
-The above command requires a 1 hour interative session with 2 CPUs, 32 GB memories on serc partition. 
+The above command requires a pseudo terminal that runs bash, and 1 hour session with 2 CPUs, 32 GB memories on serc partition. 
 
 The you can run the codes directly in the console. For example, 
 ```
