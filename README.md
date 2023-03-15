@@ -204,3 +204,11 @@ A comparison of the performance for continuous access is shown below and jump ac
 and the time used for rearranged matrix B
 
 <img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/gemm_B_rearrange.png" width="500">
+
+**Note:** In order to run the this program, you need to install ISPC on your Sherlock. This the following commands to install
+```
+wget https://github.com/ispc/ispc/releases/download/v1.18.0/ispc-v1.18.0-linux.tar.gz
+tar -xvf ispc-v1.18.0-linux.tar.gz
+export PATH=$PATH:${HOME}/Downloads/ispc-v1.18.0-linux/bin
+```
+
