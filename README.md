@@ -193,7 +193,11 @@ In this example, we calculate a matrix-matrix multiplication ```AB=X```. We use 
 
 <img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/gemm_sketch.png" width="400">
 
-One part that always get overlooked is how we access each element in A and B. For example, in C++ the index of a matrix is oriented horizontally, as shown below on the left. For row accessing, this is fast, because we are requiring a continuous indices. But for column access, this requires a jump access with a step size of N. The jump access is slow as in the elements are stored in memory continuously. Therefore, apart from regular parallelizing schemes, we can also change the index of the second matrix B, such that the loading process is more efficient, as shown below on the right.
+Usually when computing matrix-matrix multiplication, we need to vectorize the matrix for efficient. The default vectorizition in C++ looks like this
+
+<img src="https://github.com/EmmaLammE/Sherlock_examples/blob/f8c8b2bbacb5bc2313f8185515d45be782954f5c/readme_imag/vectorized_AB.png" width="400">
+
+One part that always get overlooked is how we access each element in A and B. For example, in C++ the index of a matrix is oriented horizontally, as shown below on the left. For row accessing A, this is fast, because we are requiring continuous indices. But for column access, this requires a jump access with a step size of N. The jump access is slow as in the elements are stored in memory continuously. Therefore, apart from regular parallelizing schemes, we can also change the index of the second matrix B, such that the loading process is more efficient, as shown below on the right.
 
 <img src="https://github.com/EmmaLammE/Sherlock_examples/blob/0ff2344e3485b11a7209d3ca7f83218b4e61c43c/readme_imag/par_mat_mult_sketch_B_rearrange.png" width="600">
 
