@@ -169,7 +169,7 @@ pool.join()
 ```
 Here, we set the pool size to 2, meaning that we have 2 threads of execution. Then each worker thread gets tasks synchronously, meaning that the caller will block until the issued task or tasks have been completed. The thread pool provides a parallel version of the built-in map() function for issuing tasks. After all the threads finish their jobs, we close the pool and join all threads together. Use the following command to run the code
 ```
-python3 par_for_loop.py
+python par_for_loop.py
 ```
 <!-- **Note:** The package concurrent requires python 3.8 or above. Be sure to check your python version if concurrent is reported not found. -->
 The outputs with the size of the vector to be 1e7 is shown below.
@@ -178,7 +178,7 @@ The outputs with the size of the vector to be 1e7 is shown below.
 
 As we can see, creating more threads does not increase the speed of computation. Is this because some codes we wrote were wrong? Let's try using the same parallel algorithm, but instead of computing ```y=ax+b```, we open a series of website given a set of urls. Try run 
 ```
-python3 par_open_urls.py
+python par_open_urls.py
 ```
 An example output is 
 
